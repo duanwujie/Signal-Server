@@ -1,0 +1,116 @@
+twilio: # Twilio gateway configuration
+  accountId: ACe53c252e22cb561c107925bd1c98845f
+  accountToken: b3c674bfc67e9521cfa4923e30073597
+  numbers: # Numbers allocated in Twilio
+    - 18782084631 # First number
+    # - # Second number
+    # - # Third number
+    # - # ...
+    # - # Nth number
+  messagingServicesId: 
+  localDomain: akdev.tech # Domain Twilio can connect back to for calls. Should be domain of your service.
+
+push:
+  queueSize: 1024 # Size of push pending queue
+
+recaptcha:
+  secret: "ACe53c252e22cb561c107925bd1c98845f"
+
+abuseDatabase: # Postgresql database configuration for abusive
+  driverClass: org.postgresql.Driver
+  user: "user"
+  password: "password"
+  url: "jdbc:postgresql://url.post.gres:5432/abusesvr"
+
+pushScheduler:
+  url: "redis://localhost:6379/6"
+  replicaUrls:
+        - "redis://localhost:6379/8"
+
+voiceVerification:
+  url: "https://foo.com/bar"
+  locales: ["pt-BR", "ru"]
+
+accountDatabaseCrawler:
+  chunkSize: 1000
+  chunkIntervalMs: 8000
+
+unidentifiedDelivery:
+  certificate: 123456789A123456789A123456789A123456789A123456789A123456789A123456789A123456789A123456789A123456789A123456789A123456789A123456789A123456789A123456789A123456789A123456789A123456789A123456789A123456789A==
+  privateKey: EO3Mnf0kfVlVnwSaqPoQnAxhnnGL1JTdXqktCKEe9Eo=
+  expiresDays: 365
+
+# redphone:
+#   authKey: # Deprecated
+
+turn: # TURN server configuration
+  secret: test # TURN server secret
+  uris:
+    - turn:103.218.240.185:4433
+    # - stun:yourdomain:80
+    # - stun:yourdomain.com:443
+    # - turn:yourdomain:443?transport=udp
+    # - turn:etc.com:80?transport=udp
+
+cache: # Redis server configuration for cache cluster
+  url: http://127.0.0.1:6379
+  replicaUrls: 
+    - http://127.0.0.1:6379
+
+directory:
+  redis: # Redis server configuration for directory cluster
+    url: http://127.0.0.1:6379
+    replicaUrls: 
+        - http://127.0.0.1:6379
+  client: # Configuration for interfacing with Contact Discovery Service cluster
+    userAuthenticationTokenSharedSecret: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImp0aSI6IjUwMDk2ZWJmLTViMWItNGVmNS1iNDYwLTg1NWI3ODE2MjBhMyIsImlhdCI6MTUzODY1NTgwOSwiZXhwIjoxNTM4NjU5NDA5fQ.qtL9OsHl5SACJmUP4CcxA-eI2jUDuzhx0EiL9z_8rVA
+    userAuthenticationTokenUserIdSecret: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.e$
+  sqs:
+    accessKey: 624364587793      # AWS SQS accessKey
+    accessSecret: secretdev  # AWS SQS accessSecret
+    queueUrl: https://sqs.ap-southeast-1.amazonaws.com      # AWS SQS queue url
+  server:
+     replicationUrl: http://127.0.0.1:6381                # CDS replication endpoint base url
+     replicationPassword: passer           # CDS replication endpoint password
+     replicationCaCertificate: config/certs/Certificates.p12      
+     # CDS replication endpoint TLS certificate trust root
+     # CDS reconciliation chunk size
+
+messageCache: # Redis server configuration for message store cache
+  redis: # Redis server configuration for directory cluster
+        url: http://127.0.0.1:6379
+        replicaUrls: 
+                - http://127.0.0.1:6379
+
+messageStore: # Postgresql database configuration for message store
+  driverClass: org.postgresql.Driver
+  user: signal
+  password: signal123
+  url: jdbc:postgresql://127.0.0.1:5433/messagedb
+
+attachments: # AWS S3 configuration
+  accessKey: AKIAIAYIW4BWBR2U7HIA
+  accessSecret: ocRCjLRwaG5OBlwywWuRU3PICWqkoy0U9
+  bucket: tick-s3
+  region: us-east-2
+
+profiles: # AWS S3 configuration
+  accessKey: AKIAIAYIW4BWBR2U7HIA
+  accessSecret: ocRCjLRwaG5OBlwywWuRU3PICWqkoy0U9
+  bucket: tick-s3
+  region: ap-southeast-1
+
+database: # Postgresql database configuration
+  driverClass: org.postgresql.Driver
+  user: signal
+  password: signal123
+  url: jdbc:postgresql://127.0.0.1:5433/accountdb
+
+apn: # Apple Push Notifications configuration
+   bundleId: com.nevermynd.messenger
+   pushCertificate: config/certs/Certificates.p12
+   pushKey: aqnouch
+
+gcm: # GCM Configuration
+   senderId: 90077701463
+   apiKey: AIzaSyAHNIwGE0yKG9QnDZQMcziNAF-0zliXOtH
